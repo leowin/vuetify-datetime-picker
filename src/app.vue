@@ -27,6 +27,17 @@
               </v-flex>
             </v-expansion-panel-content>
           </v-expansion-panel>
+          <v-expansion-panel  >
+            <v-expansion-panel-header>Lazy Init</v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-flex xs4>
+                <v-btn @click="datetimeLazy=new Date()">Init</v-btn>
+              </v-flex>
+              <v-flex xs4>
+                <v-datetime-picker v-model="datetimeLazy"></v-datetime-picker>
+              </v-flex>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
 
           <v-expansion-panel>
             <v-expansion-panel-header>Init with String</v-expansion-panel-header>
@@ -150,6 +161,7 @@ export default {
     return {
       nullDatetime: null,
       datetime: new Date(),
+      datetimeLazy: null,
       datetimeString: '2019-01-01 12:00',
       formattedDatetime: '09/01/2019 12:00',
       textFieldProps: {

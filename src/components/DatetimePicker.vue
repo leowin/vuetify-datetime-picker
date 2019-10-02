@@ -127,20 +127,13 @@ export default {
     }
   },
   created() {
-    if (!this.datetime) {
-      return
+    this.init()
+  },
+  watch: {
+    datetime: function() {
+      console.log(this.name)
+      this.init()
     }
-
-    let initDateTime
-    if (this.datetime instanceof Date) {
-      initDateTime = this.datetime
-    } else if (typeof this.datetime === 'string' || this.datetime instanceof String) {
-      // see https://stackoverflow.com/a/9436948
-      initDateTime = parse(this.datetime, this.dateTimeFormat, new Date())
-    }
-
-    this.date = format(initDateTime, DEFAULT_DATE_FORMAT)
-    this.time = format(initDateTime, DEFAULT_TIME_FORMAT)
   },
   computed: {
     dateTimeFormat() {
@@ -187,6 +180,22 @@ export default {
     },
     showTimePicker() {
       this.activeTab = 1
+    },
+    init() {
+      if (!this.datetime) {
+        return
+      }
+
+      let initDateTime
+      if (this.datetime instanceof Date) {
+        initDateTime = this.datetime
+      } else if (typeof this.datetime === 'string' || this.datetime instanceof String) {
+        // see https://stackoverflow.com/a/9436948
+        initDateTime = parse(this.datetime, this.dateTimeFormat, new Date())
+      }
+
+      this.date = format(initDateTime, DEFAULT_DATE_FORMAT)
+      this.time = format(initDateTime, DEFAULT_TIME_FORMAT)
     }
   }
 }
